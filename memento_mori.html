@@ -1,0 +1,137 @@
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"> 
+
+<div class="container">
+  <h1 id="headline">Mememnto mori 💀</h1>
+  <div id="countdown">
+    <ul>
+      <li><span id="years"></span>Years</li>
+      <li><span id="months"></span>Months</li>
+      <li><span id="days"></span>Days</li>
+      <li><span id="hours"></span>Hours</li>
+      <li><span id="minutes"></span>Minutes</li>
+      <li><span id="seconds"></span>Seconds</li>
+    </ul>
+  </div>
+  <p class="subtitle">You could leave life right now</p>
+</div>
+</body>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+ 
+body {
+  align-items: center;
+  background-color: #000000;
+  display: flex;
+  font-family: 'Fredericka the Great', cursive;
+}
+ 
+.container {
+  color: #aabb;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 6em;
+  font-family: 'Great Vibes', cursive;
+}
+
+.subtitle {
+  font-weight: normal;
+  font-size: 2em;
+  font-family: 'Great Vibes', cursive;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+}
+ 
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+ 
+.message {
+  font-size: 4rem;
+}
+ 
+#content {
+  display: none;
+  padding: 1rem;
+}
+ 
+.emoji {
+  padding: 0 0.25rem;
+}
+ 
+@media all and (max-width: 1080px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+ 
+  li {
+    font-size: 1.125rem;
+    padding: 0.75rem;
+  }
+ 
+  li span {
+    font-size: 3.375rem;
+  }
+}
+ 
+</style>
+
+<script>
+let since = new Date("Feb 2, 2001 07:42:13").getTime();
+
+function prependZero(num) {
+    return num < 10 ? "0" + num : num;
+}
+
+let x = setInterval(function() {
+
+  let now = new Date().getTime();
+
+  let distance = (since - now) * - 1;
+
+  let years = Math.trunc(distance / (1000 * 60 * 60 * 24 * 30.43 * 12));
+  let months = Math.trunc((distance % (1000 * 60 * 60 * 24 * 30.43 * 12)) / (1000 * 60 * 60 * 24 * 30.43));
+  let days = Math.trunc((distance % (1000 * 60 * 60 * 24 * 30.43)) / (1000 * 60 * 60 * 24));
+  let hours = Math.trunc((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.trunc((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.trunc((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("years").innerHTML = prependZero(years);
+  document.getElementById("months").innerHTML = prependZero(months);
+  document.getElementById("days").innerHTML = prependZero(days);
+  document.getElementById("hours").innerHTML = prependZero(hours);
+  document.getElementById("minutes").innerHTML = prependZero(minutes);
+  document.getElementById("seconds").innerHTML = prependZero(seconds); 
+
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("headline").innerHTML = "'aliquid temporis tui sume etiam tibi' - Seneca";
+    countdown.style.display = "none";
+    content.style.display = "block";
+  }
+}, 1000);
+</script>
